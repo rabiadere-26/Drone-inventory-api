@@ -1,58 +1,65 @@
-# 🛸 İHA Envanter Yönetim Sistemi 
+🛰️ Türkiye Menşeli İnsansız Hava Sistemleri (İHS) Envanter Takip Sistemi
+Bu proje, Türkiye'nin yerli ve milli imkanlarla geliştirdiği İnsansız Hava Araçları'nın (İHA/SİHA) envanter takibini, operasyonel durumlarını ve teknik özelliklerini yönetmek için geliştirilmiş profesyonel bir Backend + Dashboard sistemidir.
 
-Bu proje, İnsansız Hava Araçları (İHA) ve Silahlı İnsansız Hava Araçlarının (SİHA) envanter takibini yapmak, teknik verilerini yönetmek ve operasyonel durumlarını izlemek için geliştirilmiş bir **Backend API** çalışmasıdır.
+🚀 Öne Çıkan Özellikler
+Dinamik Envanter Yönetimi: İHA'lar, SİHA'lar, Hedef Uçaklar ve Döner Kanatlı sistemler için kategori bazlı yönetim.
 
-## 🚀 Öne Çıkan Özellikler
-- **RESTful API:** Django REST Framework kullanılarak geliştirilen tam kapsamlı CRUD operasyonları.
-- **Relational Database:** İHA ve SİHA kategorileri arasında ilişkisel (Foreign Key) mimari.
-- **Havacı Mantığı:** Araçlar için "Toplam Uçuş Saati" ve "Son Bakım Tarihi" gibi sektörel veri alanları.
-- **Interaktif Dokümantasyon:** Swagger (OpenAPI 3) üzerinden anlık API testi imkanı.
-- **Dashboard:** Operasyonel takip için Bootstrap tabanlı izleme paneli.
-- **Konteynerizasyon:** Docker ve Docker-Compose desteği.
+Akıllı Bakım Takip Sistemi: Toplam uçuş saati ve son bakım tarihi verilerini işleyerek otomatik "Kritik" veya "Uyarı" durumları üreten iş mantığı (Business Logic).
 
-## 🛠 Kullanılan Teknolojiler
-- **Dil:** Python 3.13
-- **Framework:** Django 5.x, Django REST Framework
-- **Veritabanı:** SQLite (Geliştirme aşaması için)
-- **Konteyner:** Docker, Docker-Compose
-- **Dokümantasyon:** Drf-spectacular (Swagger)
+Profesyonel API: Django REST Framework ile geliştirilmiş, tamamen dokümante edilmiş API uç noktaları.
 
-## 📦 Kurulum ve Çalıştırma
+İzlenebilirlik (Logging): Sistem üzerindeki tüm önemli hareketlerin ve hataların Python Logging modülü ile takip edilmesi.
 
-### 1. Yerel Geliştirme Ortamı
-Projeyi kendi bilgisayarınızda çalıştırmak için:
+Dockerize Mimari: docker-compose ile tek komutta ayağa kalkan PostgreSQL ve Web sunucusu entegrasyonu.
 
-# Sanal ortam oluşturma
-python -m venv venv
+Otomatik Testler: Pytest ile %100 doğrulanan API ve Arayüz kararlılığı.
 
-# Sanal ortamı aktif etme (Windows)
-venv\Scripts\activate
+![İHS Envanter Dashboard](dashboard-ss.png)
 
-# Bağımlılıkları yükleme
-pip install -r requirements.txt
+🛠️ Teknik Altyapı
+Backend: Django (Python 3.13)
 
-# Veritabanını hazırlama
-python manage.py migrate
+Database: PostgreSQL
 
-# Sunucuyu başlatma
-python manage.py runserver
+Frontend: Bootstrap 5 (Responsive Dashboard)
 
-Uygulama varsayılan olarak http://127.0.0.1:8000/ adresinde çalışacaktır.
+API Documentation: Swagger / OpenAPI 3.0 (drf-spectacular)
 
-### Docker ile Çalıştırma (Önerilen)
+Testing: Pytest-Django
+
+📦 Kurulum ve Çalıştırma
+Sistemi yerel makinenizde çalıştırmak için Docker yüklü olması yeterlidir:
+
+Projeyi klonlayın:
+
+git clone https://github.com/kullaniciadi/ihs-envanter-sistemi.git
+cd ihs-envanter-sistemi
+
+Docker konteynerlerini ayağa kaldırın:
 
 docker-compose up --build
 
-🔗 Önemli Endpointler
-Proje ayağa kalktıktan sonra aşağıdaki adreslerden test edilebilir:
+Admin panelini kullanmak için superuser oluşturun:
 
-API Dashboard (Görsel İzleme): http://localhost:8000/api/dashboard/
+docker-compose exec web python manage.py createsuperuser
 
-Swagger Dokümantasyonu: http://localhost:8000/api/docs/
+Erişim Adresleri:
 
-İHA Listesi (JSON API): http://localhost:8000/api/drones/
+Dashboard: http://localhost:8000/dashboard/
 
-🧪 Testler
-Sistemdeki API endpoint'lerinin ve iş mantığının doğruluğunu kontrol etmek için hazırlanan testleri şu komutla çalıştırabilirsiniz:
+API Docs (Swagger): http://localhost:8000/api/docs/
 
-python manage.py test
+Admin Panel: http://localhost:8000/admin/
+
+🧪 Testlerin Çalıştırılması
+Sistemin kararlılığını doğrulamak için yazdığımız entegrasyon ve birim testlerini şu komutla çalıştırabilirsiniz:
+
+docker-compose exec web pytest
+
+📋 Örnek Senaryo: Akıllı Bakım Karar Mekanizması
+Sistem, bir İHA'nın total_flight_hours verisi 500 saati geçtiğinde veya son bakımından bu yana 180 gün dolduğunda dashboard üzerinde görsel uyarılar oluşturur.
+
+Not: Bu yapı, önleyici bakım (preventive maintenance) süreçlerinin dijitalleşmesini sağlar ve operasyonel hataları minimize eder.
+
+🤝 İletişim
+Bu proje, modern web teknolojileri ve savunma sanayii gereksinimleri temel alınarak geliştirilmiştir. Sorularınız için iletişime geçebilirsiniz.

@@ -17,10 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from drones import views  # Dashboard view'ını çekmek için bunu ekledik
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('drones.urls')),
+    
+    # Dashboard Sayfası
+    path('dashboard/', views.dashboard, name='dashboard'), # http://127.0.0.1:8000/dashboard/
+    
     # Swagger adresleri
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),

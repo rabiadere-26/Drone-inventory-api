@@ -1,9 +1,29 @@
 services:
+  db:
+    image: postgres:15
+    container_name: iha_db_container
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=iha_database
+      - POSTGRES_USER=rabia_user
+      - POSTGRES_PASSWORD=rabia_pass123
+    ports:
+      - "5432:5432"
+
   web:
     build: .
+    container_name: iha_web_container
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
     ports:
       - "8000:8000"
     environment:
       - DEBUG=1
+      - DATABASE_URL=postgres://rabia_user:rabia_pass123@db:5432/iha_database
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
