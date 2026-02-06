@@ -3,6 +3,7 @@
 Bu proje, Türkiye'nin yerli ve milli imkanlarla geliştirdiği İnsansız Hava Araçları'nın (İHA/SİHA) envanter takibini, operasyonel durumlarını ve teknik özelliklerini yönetmek için geliştirilmiş profesyonel bir Backend + Dashboard sistemidir.
 
 🚀 Öne Çıkan Özellikler
+
 Dinamik Envanter Yönetimi: İHA'lar, SİHA'lar, Hedef Uçaklar ve Döner Kanatlı sistemler için kategori bazlı yönetim.
 
 Akıllı Bakım Takip Sistemi: Toplam uçuş saati ve son bakım tarihi verilerini işleyerek otomatik "Kritik" veya "Uyarı" durumları üreten iş mantığı (Business Logic).
@@ -18,6 +19,7 @@ Otomatik Testler: Pytest ile %100 doğrulanan API ve Arayüz kararlılığı.
 ![İHS Envanter Dashboard](dashboard-ss.png)
 
 🛠️ Teknik Altyapı
+
 Backend: Django (Python 3.13)
 
 Database: PostgreSQL
@@ -29,6 +31,7 @@ API Documentation: Swagger / OpenAPI 3.0 (drf-spectacular)
 Testing: Pytest-Django
 
 📦 Kurulum ve Çalıştırma
+
 Sistemi yerel makinenizde çalıştırmak için Docker yüklü olması yeterlidir:
 
 Projeyi klonlayın:
@@ -53,11 +56,13 @@ API Docs (Swagger): http://localhost:8000/api/docs/
 Admin Panel: http://localhost:8000/admin/
 
 🧪 Testlerin Çalıştırılması
+
 Sistemin kararlılığını doğrulamak için yazdığımız entegrasyon ve birim testlerini şu komutla çalıştırabilirsiniz:
 
 docker-compose exec web pytest
 
 📋 Örnek Senaryo: Akıllı Bakım Karar Mekanizması
+
 Sistem, bir İHA'nın total_flight_hours verisi 500 saati geçtiğinde veya son bakımından bu yana 180 gün dolduğunda dashboard üzerinde görsel uyarılar oluşturur.
 
 Not: Bu yapı, önleyici bakım (preventive maintenance) süreçlerinin dijitalleşmesini sağlar ve operasyonel hataları minimize eder.
